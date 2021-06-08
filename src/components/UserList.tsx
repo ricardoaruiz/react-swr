@@ -14,32 +14,36 @@ export const UserList = () => {
   const { data: users, mutate } = useFetch<User[]>('users')
 
   const handleChangeName = React.useCallback((user: User) => {
-    api.put(`users/${user.id}`, { name: 'Teobaldo' })
+    mutate(users => {
+      const newName = user.name.includes('Updated') ? user.name.split(' ')[0] : `${user.name} Updated`
+      // Chama a api para alteração e continua o fluxo sem esperar
+      api.put(`users/${user.id}`, { name: newName })
 
-    const newUserList = users?.map(currentUser => {
-      if(user.id === currentUser.id) {
-        return { ...currentUser, name: 'Teobaldo' }
-      }
-      return currentUser
+      // Retorna uma nova lista de usuários assumindo que não haverá erro na API
+      return users?.map(currentUser => {
+        if(user.id === currentUser.id) {
+          // Faz a mudança do cache global para todas as requisiçãoes com a url informada passando o item alterado
+          mutateGlobal(`users/${user.id}`, { id: user.id, name: newName })
+          // Retorna o user alterado com o novo nome
+          return { ...currentUser, name: newName }
+        }
+
+        // Atualiza o cache para a requisição corrente (a que listou ou users (linha 14))
+        return currentUser
+      })
     })
-
-    // Faz a mudança do cache local
-    mutate(newUserList)
-
-    // Faz a mudança do cache global para todas as requisiçãoes com a url informada
-    mutateGlobal(`users/${user.id}`, { id: user.id, name: 'Teobaldo' })
-  }, [mutate, users])
+  }, [mutate])
 
   if (!users) {
     return <div>Carregando...</div>
   }
 
   return (
-    <ul>
+    <ul style={{ borderBottom: '1px solid gray', width: '200px', margin: '25px auto', paddingBottom: '20px' }}>
       {users.map((user) => (
-        <li key={user.id}>
+        <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '5px' }} key={user.id}>
           <Link to={`/${user.id}`}>{user.name}</Link>
-          <button type="button" onClick={() => handleChangeName(user)}>Altera nome</button>
+          <button type="button" onClick={() => handleChangeName(user)}>Change name</button>
         </li>
       ))}
     </ul>

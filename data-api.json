@@ -1,12 +1,12 @@
 {
   "users": [
     {
-      "id": 1,
-      "name": "João"
+      "name": "João",
+      "id": 1
     },
     {
-      "id": 2,
-      "name": "Maria"
+      "name": "Maria",
+      "id": 2
     },
     {
       "id": 3,
@@ -17,20 +17,20 @@
       "id": 4
     },
     {
-      "id": 5,
-      "name": "Paula"
+      "name": "Paula",
+      "id": 5
     },
     {
       "id": 6,
       "name": "Celina"
     },
     {
-      "id": 7,
-      "name": "Ana"
+      "name": "Ana",
+      "id": 7
     },
     {
-      "id": 8,
-      "name": "Joanito"
+      "name": "Joanito",
+      "id": 8
     }
   ]
 }

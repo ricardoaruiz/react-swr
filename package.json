@@ -23,7 +23,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "api": "json-server -p 3333 -d 1000 data-api.json",
+    "api": "json-server -p 3333 -d 2000 data-api.json",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
