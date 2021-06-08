@@ -14,7 +14,7 @@ type Params = {
 export const UserDetail = () => {
   const { id } = useParams<Params>()
   
-  const { data: user } = useFetch(`http://localhost:3333/users/${id}`)
+  const { data: user } = useFetch<User>(`users/${id}`)
 
   if (!user) {
     return <div>Carregando...</div>

@@ -10,7 +10,7 @@ type User = {
 
 export const UserList = () => {
 
-  const { data } = useFetch<User[]>('http://localhost:3333/users')
+  const { data } = useFetch<User[]>('users')
 
   if (!data) {
     return <div>Carregando...</div>
