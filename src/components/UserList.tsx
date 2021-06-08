@@ -27,7 +27,7 @@ export const UserList = () => {
     mutate(newUserList)
 
     // Faz a mudança do cache global para todas as requisiçãoes com a url informada
-    mutateGlobal(`users/${user.id}`)
+    mutateGlobal(`users/${user.id}`, { id: user.id, name: 'Teobaldo' })
   }, [mutate, users])
 
   if (!users) {
