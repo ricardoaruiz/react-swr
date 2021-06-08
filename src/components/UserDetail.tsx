@@ -1,5 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
+import useFetch from 'hooks/useFetch'
 
 type User = {
   id: number
@@ -12,17 +13,12 @@ type Params = {
 
 export const UserDetail = () => {
   const { id } = useParams<Params>()
-  const [user, setUser] = React.useState<User>()
+  
+  const { data: user } = useFetch(`http://localhost:3333/users/${id}`)
 
-  React.useEffect(() => {
-    const loadUser = async () => {
-      const response = await fetch(`http://localhost:3333/users/${id}`)
-      const data = await response.json()
-
-      setUser(data)
-    }
-    loadUser()
-  }, [id])
+  if (!user) {
+    return <div>Carregando...</div>
+  }
 
   return (
     <>

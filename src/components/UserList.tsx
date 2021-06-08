@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import useFetch from 'hooks/useFetch'
+
 type User = {
   id: number
   name: string
@@ -8,21 +10,15 @@ type User = {
 
 export const UserList = () => {
 
-  const [users, setUsers] = React.useState<User[]>([])
+  const { data } = useFetch<User[]>('http://localhost:3333/users')
 
-  React.useEffect(() => {
-    const loadUsers = async () => {
-      const response = await fetch('http://localhost:3333/users');
-      const data = await response.json()
-
-      setUsers(data)
-    }
-    loadUsers()
-  }, [])
+  if (!data) {
+    return <div>Carregando...</div>
+  }
 
   return (
     <ul>
-      {users.map(({id, name}) => (
+      {data.map(({id, name}) => (
         <li key={id}><Link to={`/${id}`}>{name}</Link></li>
       ))}
     </ul>
