@@ -1,12 +1,36 @@
 {
   "users": [
-    { "id": 1, "name": "João" },
-    { "id": 2, "name": "Maria" },
-    { "id": 3, "name": "Leopoldo" },
-    { "id": 4, "name": "Asdrubal" },
-    { "id": 5, "name": "Paula" },
-    { "id": 6, "name": "Celina" },
-    { "id": 7, "name": "Ana" },
-    { "id": 8, "name": "Aloisio" }
+    {
+      "id": 1,
+      "name": "João"
+    },
+    {
+      "id": 2,
+      "name": "Maria"
+    },
+    {
+      "id": 3,
+      "name": "Leopoldo"
+    },
+    {
+      "name": "Ariela",
+      "id": 4
+    },
+    {
+      "id": 5,
+      "name": "Paula"
+    },
+    {
+      "id": 6,
+      "name": "Celina"
+    },
+    {
+      "id": 7,
+      "name": "Ana"
+    },
+    {
+      "id": 8,
+      "name": "Joanito"
+    }
   ]
 }
